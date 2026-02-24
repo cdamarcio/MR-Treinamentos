@@ -3,146 +3,713 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAZZ - Engenharia, Educação & Tecnologia</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --mazz-blue: #001f3f;
-            --mazz-gold: #ffc107;
-            --mazz-dark: #00152b;
-            --mazz-gray: #6c757d;
-            --mazz-light: #f8f9fa;
-        }
-
-        body { padding-top: 85px; font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--mazz-dark); overflow-x: hidden; }
-
-        /* NAVBAR */
-        .navbar { background: rgba(0, 31, 63, 0.98) !important; backdrop-filter: blur(12px); border-bottom: 4px solid var(--mazz-gold); padding: 15px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-        .navbar-brand { font-size: 1.8rem; font-weight: 800; letter-spacing: 2px; color: white !important; }
-        .nav-link { color: rgba(255, 255, 255, 0.85) !important; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; margin: 0 10px; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { color: var(--mazz-gold) !important; }
-
-        /* HERO */
-        .hero-section { background: linear-gradient(135deg, var(--mazz-blue) 0%, var(--mazz-dark) 100%); color: white; padding: 100px 0; position: relative; }
-        .hero-title { font-weight: 800; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 20px; }
-
-        /* CARDS SERVIÇOS */
-        .feature-card { border: 1px solid #eee; border-radius: 20px; transition: 0.4s; background: #fff; padding: 30px; height: 100%; display: flex; flex-direction: column; text-align: center; }
-        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--mazz-gold); }
-
-        /* DEPOIMENTOS */
-        .testimonials-section { background-color: var(--mazz-light); padding: 80px 0; }
-        .testimonial-item { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); height: 100%; border-top: 4px solid transparent; transition: 0.3s; }
-        .testimonial-item:hover { border-top: 4px solid var(--mazz-gold); }
-        .testimonial-text { font-size: 0.9rem; font-style: italic; color: var(--mazz-gray); margin-bottom: 15px; }
-        .user-info img { width: 45px; height: 45px; border-radius: 50%; margin-right: 12px; border: 2px solid var(--mazz-gold); }
-        .user-name { font-weight: 800; font-size: 0.9rem; color: var(--mazz-blue); margin: 0; }
-        .user-role { font-size: 0.75rem; color: var(--mazz-gold); margin: 0; font-weight: 600; }
-
-        /* FOOTER */
-        .mazz-footer { background-color: #f9f9f9; padding: 40px 0 20px; border-top: 1px solid #ececec; margin-top: auto; text-align: center; }
-        .footer-copyright { font-weight: 700; color: var(--mazz-dark); }
-        .footer-divider { width: 50px; height: 2px; background: var(--mazz-gold); margin: 15px auto; }
-        .footer-dev { font-size: 0.8rem; color: var(--mazz-gray); }
-        .footer-dev a { color: #198754; text-decoration: none; font-weight: 700; }
-    </style>
+    <title>MR Treinamentos - Cursos, TCC e Estágios | Transforme sua Carreira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="logo-animation">
+                <span class="logo-letter">M</span>
+                <span class="logo-letter">R</span>
+                <span class="logo-space"></span>
+                <span class="logo-letter">T</span>
+                <span class="logo-letter">R</span>
+                <span class="logo-letter">E</span>
+                <span class="logo-letter">I</span>
+                <span class="logo-letter">N</span>
+                <span class="logo-letter">A</span>
+                <span class="logo-letter">M</span>
+                <span class="logo-letter">E</span>
+                <span class="logo-letter">N</span>
+                <span class="logo-letter">T</span>
+                <span class="logo-letter">O</span>
+                <span class="logo-letter">S</span>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">MAZZ</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto text-center">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cursos.html">Cursos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="academico.html">Academico</a></li>
-                    <li class="nav-item"><a class="nav-link" href="concursos.html">Concursos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="laudos.html">Laudos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre Nos</a></li>
-                </ul>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <div class="brand-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span class="brand-text">MR Treinamentos</span>
+            </a>
+
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Início</a>
+                <a href="#cursos" class="nav-link">Cursos</a>
+                <a href="#tcc" class="nav-link">TCC</a>
+                <a href="#estagios" class="nav-link">Estágios</a>
+                <a href="#depoimentos" class="nav-link">Depoimentos</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="https://wa.me/5562996466033" class="btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Fale Conosco</span>
+                </a>
+                <button class="btn-mobile">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </nav>
 
-    <header class="hero-section text-center">
-        <div class="container">
-            <h1 class="hero-title">ENGENHARIA, EDUCAÇÃO<br>& TECNOLOGIA</h1>
-            <p class="lead mb-5 opacity-75">Soluções multidisciplinares com rigor técnico e atuação nacional.</p>
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="cursos.html" class="btn btn-warning btn-lg fw-bold px-4">VER CURSOS</a>
-                <a href="laudos.html" class="btn btn-outline-light btn-lg fw-bold px-4">LAUDOS TÉCNICOS</a>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span class="mobile-brand">MR Treinamentos</span>
+            <button class="btn-close-mobile">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#home">Início</a>
+            <a href="#cursos">Cursos</a>
+            <a href="#tcc">TCC</a>
+            <a href="#estagios">Estágios</a>
+            <a href="#depoimentos">Depoimentos</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+            <div class="grid-pattern"></div>
+        </div>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>+10.000 alunos formados</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Seu futuro começa <br>
+                    <span class="text-gradient">aqui e agora</span>
+                </h1>
+                
+                <p class="hero-description">
+                    A MR Treinamentos é a plataforma completa para quem quer ir além. 
+                    Cursos profissionalizantes, assessoria de TCC e suporte para estágios. 
+                    Tudo em um só lugar.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#cursos" class="btn-primary">
+                        <span>Explorar Cursos</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="https://wa.me/5562996466033" class="btn-secondary" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Falar no WhatsApp</span>
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number" data-count="15000">0</div>
+                        <div class="stat-label">Alunos</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <div class="stat-number" data-count="500">0</div>
+                        <div class="stat-label">Cursos</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <div class="stat-number" data-count="98">0</div>
+                        <div class="stat-label">% Aprovação</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="floating-card card-main">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="card-info">
+                            <span class="card-label">Certificado</span>
+                            <span class="card-value">40 Horas</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4>Segurança do Trabalho</h4>
+                        <p>NR-35, NR-33, NR-10</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">R$ 49,90</span>
+                        <button class="btn-card">Ver curso</button>
+                    </div>
+                </div>
+
+                <div class="floating-card card-float-1">
+                    <i class="fas fa-check-circle"></i>
+                    <span>TCC Aprovado!</span>
+                </div>
+
+                <div class="floating-card card-float-2">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Estágio Garantido</span>
+                </div>
+
+                <div class="floating-card card-float-3">
+                    <i class="fas fa-users"></i>
+                    <span>+500 Online</span>
+                </div>
             </div>
         </div>
-    </header>
 
-    <section class="container my-5 py-4">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <h3 class="fw-bold h4">Educação</h3>
-                    <p class="text-muted small">Cursos e NRs com certificação profissional para empresas e indivíduos.</p>
-                    <a href="cursos.html" class="btn btn-link text-primary fw-bold text-decoration-none mt-auto">Saber mais &rarr;</a>
-                </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
             </div>
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <h3 class="fw-bold h4">Engenharia</h3>
-                    <p class="text-muted small">Laudos, perícias e consultoria técnica em Civil, Ambiental e SST.</p>
-                    <a href="laudos.html" class="btn btn-link text-primary fw-bold text-decoration-none mt-auto">Saber mais &rarr;</a>
-                </div>
+            <span>Role para explorar</span>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nossos Serviços</span>
+                <h2 class="section-title">Tudo que você precisa em <span class="text-gradient">um só lugar</span></h2>
             </div>
-            <div class="col-md-4">
-                <div class="feature-card">
-                    <h3 class="fw-bold h4">Concursos</h3>
-                    <p class="text-muted small">Preparatórios de elite com foco em resultados e aprovação real.</p>
-                    <a href="concursos.html" class="btn btn-link text-primary fw-bold text-decoration-none mt-auto">Saber mais &rarr;</a>
+
+            <div class="services-grid">
+                <div class="service-card" data-service="cursos">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Cursos Profissionalizantes</h3>
+                    <p>+500 cursos nas áreas de SST, Tecnologia, Engenharia, Gestão e Educação. Certificados válidos em todo Brasil.</p>
+                    <a href="#cursos" class="service-link">
+                        Ver cursos <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <div class="service-hover"></div>
+                </div>
+
+                <div class="service-card featured" data-service="tcc">
+                    <div class="service-badge">Mais Popular</div>
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Assessoria de TCC</h3>
+                    <p>Orientação completa para TCC, monografias, dissertações e teses. Do projeto à defesa, estamos com você.</p>
+                    <a href="#tcc" class="service-link">
+                        Saiba mais <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <div class="service-hover"></div>
+                </div>
+
+                <div class="service-card" data-service="estagios">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Suporte para Estágios</h3>
+                    <p>Documentação, relatórios e acompanhamento para estágios obrigatórios e não-obrigatórios. EAD ou presencial.</p>
+                    <a href="#estagios" class="service-link">
+                        Conhecer <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <div class="service-hover"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials-section">
+    <!-- Cursos Section -->
+    <section class="cursos-section" id="cursos">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold" style="color: var(--mazz-blue);">O QUE DIZEM NOSSOS CLIENTES</h2>
-                <div class="footer-divider"></div>
+            <div class="section-header center">
+                <span class="section-tag">Catálogo de Cursos</span>
+                <h2 class="section-title">Escolha sua área de <span class="text-gradient">interesse</span></h2>
+                <p class="section-description">Cursos com certificação de 40 horas, válidos em todo território nacional</p>
             </div>
-            <div class="row g-3">
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Material da SEFA-PA excelente, focado e muito atualizado.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Ricardo+Souza&background=001f3f&color=fff"><div><p class="user-name">Ricardo Souza</p><p class="user-role">Concursos</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Laudo de reforma entregue com agilidade e rigor técnico.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Ana+Paula&background=001f3f&color=fff"><div><p class="user-name">Ana Paula</p><p class="user-role">Engenharia</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Consultoria no doutorado foi essencial para minha tese.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Felipe+Moraes&background=001f3f&color=fff"><div><p class="user-name">Felipe Moraes</p><p class="user-role">Acadêmico</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Treinamento de NR-35 muito prático e profissional.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Marcos+Silva&background=001f3f&color=fff"><div><p class="user-name">Marcos Silva</p><p class="user-role">SST</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Suporte para estágio EAD rápido e sem burocracia.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Juliana+Costa&background=001f3f&color=fff"><div><p class="user-name">Juliana Costa</p><p class="user-role">Estudante</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Licenciamento ambiental resolvido com maestria pela MAZZ.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Carlos+Lima&background=001f3f&color=fff"><div><p class="user-name">Carlos Lima</p><p class="user-role">Ambiental</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Didática do curso de Python voltada para o mercado real.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Lucas+Oliveira&background=001f3f&color=fff"><div><p class="user-name">Lucas Oliveira</p><p class="user-role">Tecnologia</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Vistoria cautelar detalhada, nos deu segurança jurídica.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Beatriz+Melo&background=001f3f&color=fff"><div><p class="user-name">Beatriz Melo</p><p class="user-role">Construtora</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Aprovado no TCC com nota máxima. Obrigado MAZZ!</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Andre+Santos&background=001f3f&color=fff"><div><p class="user-name">André Santos</p><p class="user-role">Técnico</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">O sistema de gestão superou nossas expectativas de TI.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Patricia+Lopes&background=001f3f&color=fff"><div><p class="user-name">Patrícia Lopes</p><p class="user-role">Empresária</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Videoaulas para o SEDUC-PA são as melhores do mercado.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Fernanda+Rocha&background=001f3f&color=fff"><div><p class="user-name">Fernanda Rocha</p><p class="user-role">Educação</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Consultoria em SST fundamental para nossa adequação.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Gustavo+Xavier&background=001f3f&color=fff"><div><p class="user-name">Gustavo Xavier</p><p class="user-role">Indústria</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Atendimento nacional com excelência. Recomendo sempre.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Renato+Gomes&background=001f3f&color=fff"><div><p class="user-name">Renato Gomes</p><p class="user-role">Consultor</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Formatação ABNT perfeita e suporte acadêmico constante.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Camila+Vilela&background=001f3f&color=fff"><div><p class="user-name">Camila Vilela</p><p class="user-role">Acadêmico</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Treinamentos práticos que realmente engajam a equipe.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Roberto+Alves&background=001f3f&color=fff"><div><p class="user-name">Roberto Alves</p><p class="user-role">SST</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Análise de dados no mestrado impecável. Muito grata.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Sandra+Brito&background=001f3f&color=fff"><div><p class="user-name">Sandra Brito</p><p class="user-role">Mestrado</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">Plataforma de cursos intuitiva e suporte nota 10.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Tiago+Mendes&background=001f3f&color=fff"><div><p class="user-name">Tiago Mendes</p><p class="user-role">Eletricista</p></div></div></div></div>
-                <div class="col-md-6 col-lg-4"><div class="testimonial-item"><p class="testimonial-text">O laudo para nosso condomínio foi vital para a reforma.</p><div class="user-info d-flex align-items-center"><img src="https://ui-avatars.com/api/?name=Daniela+Ferraz&background=001f3f&color=fff"><div><p class="user-name">Daniela Ferraz</p><p class="user-role">Síndica</p></div></div></div></div>
+
+            <div class="categorias-scroll">
+                <button class="categoria-btn active" data-filter="all">
+                    <i class="fas fa-th-large"></i> Todos
+                </button>
+                <button class="categoria-btn" data-filter="sst">
+                    <i class="fas fa-hard-hat"></i> SST & NRs
+                </button>
+                <button class="categoria-btn" data-filter="tech">
+                    <i class="fas fa-code"></i> Tecnologia
+                </button>
+                <button class="categoria-btn" data-filter="eng">
+                    <i class="fas fa-drafting-compass"></i> Engenharias
+                </button>
+                <button class="categoria-btn" data-filter="gestao">
+                    <i class="fas fa-chart-line"></i> Gestão
+                </button>
+                <button class="categoria-btn" data-filter="edu">
+                    <i class="fas fa-chalkboard-teacher"></i> Educação
+                </button>
+            </div>
+
+            <div class="cursos-grid" id="cursosGrid">
+                <!-- Curso 1 -->
+                <div class="curso-card" data-category="sst">
+                    <div class="curso-image">
+                        <div class="curso-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <div class="curso-badge">Mais vendido</div>
+                    </div>
+                    <div class="curso-content">
+                        <span class="curso-category">SST & NRs</span>
+                        <h4>NR-35: Trabalho em Altura</h4>
+                        <p>Curso completo com normas técnicas, equipamentos de proteção e procedimentos de segurança.</p>
+                        <div class="curso-meta">
+                            <span><i class="fas fa-clock"></i> 40h</span>
+                            <span><i class="fas fa-certificate"></i> Certificado</span>
+                        </div>
+                        <div class="curso-footer">
+                            <span class="curso-price">R$ 49,90</span>
+                            <button class="btn-curso">Matricular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso 2 -->
+                <div class="curso-card" data-category="tech">
+                    <div class="curso-image">
+                        <div class="curso-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                    </div>
+                    <div class="curso-content">
+                        <span class="curso-category">Tecnologia</span>
+                        <h4>Python para Iniciantes</h4>
+                        <p>Aprenda programação do zero com Python. Lógica, sintaxe e projetos práticos.</p>
+                        <div class="curso-meta">
+                            <span><i class="fas fa-clock"></i> 40h</span>
+                            <span><i class="fas fa-certificate"></i> Certificado</span>
+                        </div>
+                        <div class="curso-footer">
+                            <span class="curso-price">R$ 79,90</span>
+                            <button class="btn-curso">Matricular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso 3 -->
+                <div class="curso-card" data-category="gestao">
+                    <div class="curso-image">
+                        <div class="curso-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                    </div>
+                    <div class="curso-content">
+                        <span class="curso-category">Gestão</span>
+                        <h4>Gestão de Projetos (PMBOK)</h4>
+                        <p>Metodologias ágeis, planejamento, execução e entrega de projetos de sucesso.</p>
+                        <div class="curso-meta">
+                            <span><i class="fas fa-clock"></i> 40h</span>
+                            <span><i class="fas fa-certificate"></i> Certificado</span>
+                        </div>
+                        <div class="curso-footer">
+                            <span class="curso-price">R$ 59,90</span>
+                            <button class="btn-curso">Matricular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso 4 -->
+                <div class="curso-card" data-category="eng">
+                    <div class="curso-image">
+                        <div class="curso-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="curso-badge">Novo</div>
+                    </div>
+                    <div class="curso-content">
+                        <span class="curso-category">Engenharias</span>
+                        <h4>AutoCAD 2D e 3D</h4>
+                        <p>Desenho técnico, modelagem 3D e projetos completos para engenharia e arquitetura.</p>
+                        <div class="curso-meta">
+                            <span><i class="fas fa-clock"></i> 40h</span>
+                            <span><i class="fas fa-certificate"></i> Certificado</span>
+                        </div>
+                        <div class="curso-footer">
+                            <span class="curso-price">R$ 89,90</span>
+                            <button class="btn-curso">Matricular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso 5 -->
+                <div class="curso-card" data-category="edu">
+                    <div class="curso-image">
+                        <div class="curso-icon">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                    </div>
+                    <div class="curso-content">
+                        <span class="curso-category">Educação</span>
+                        <h4>Alfabetização e Letramento</h4>
+                        <p>Metodologias atuais para ensino da leitura e escrita na educação infantil e fundamental.</p>
+                        <div class="curso-meta">
+                            <span><i class="fas fa-clock"></i> 40h</span>
+                            <span><i class="fas fa-certificate"></i> Certificado</span>
+                        </div>
+                        <div class="curso-footer">
+                            <span class="curso-price">R$ 49,90</span>
+                            <button class="btn-curso">Matricular</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curso 6 -->
+                <div class="curso-card" data-category="sst">
+                    <div class="curso-image">
+                        <div class="curso-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                    </div>
+                    <div class="curso-content">
+                        <span class="curso-category">SST & NRs</span>
+                        <h4>NR-10: Segurança em Eletricidade</h4>
+                        <p>Trabalhos com eletricidade, riscos, prevenção de acidentes e normas técnicas.</p>
+                        <div class="curso-meta">
+                            <span><i class="fas fa-clock"></i> 40h</span>
+                            <span><i class="fas fa-certificate"></i> Certificado</span>
+                        </div>
+                        <div class="curso-footer">
+                            <span class="curso-price">R$ 59,90</span>
+                            <button class="btn-curso">Matricular</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cursos-actions">
+                <a href="cursos.html" class="btn-outline">
+                    <span>Ver todos os cursos</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <footer class="mazz-footer">
+    <!-- TCC Section -->
+    <section class="tcc-section" id="tcc">
         <div class="container">
-            <div class="footer-copyright">&copy; 2026 MAZZ. Todos os direitos reservados. Goiânia - GO.</div>
-            <div class="footer-divider"></div>
-            <div class="footer-dev">Desenvolvido por: <a href="https://www.kmprojetos.eng.br/" target="_blank">KM Engenharia & Tecnologia</a></div>
+            <div class="tcc-grid">
+                <div class="tcc-content">
+                    <span class="section-tag">Assessoria de TCC</span>
+                    <h2 class="section-title">Seu TCC com nota <span class="text-gradient">máxima</span></h2>
+                    <p class="tcc-description">
+                        Não deixe o TCC atrapalhar sua formatura. Nossa equipe de especialistas 
+                        te acompanha em todas as etapas, desde a escolha do tema até a defesa final.
+                    </p>
+
+                    <div class="tcc-features">
+                        <div class="tcc-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Orientação personalizada</h4>
+                                <p>Professor dedicado para o seu projeto</p>
+                            </div>
+                        </div>
+                        <div class="tcc-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Revisão ABNT</h4>
+                                <p>Formatação conforme normas atualizadas</p>
+                            </div>
+                        </div>
+                        <div class="tcc-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Anti-plágio garantido</h4>
+                                <p>Trabalho 100% original e exclusivo</p>
+                            </div>
+                        </div>
+                        <div class="tcc-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Todos os níveis</h4>
+                                <p>Técnico, Graduação, Especialização, Mestrado e Doutorado</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tcc-cta">
+                        <a href="https://wa.me/5562996466033" class="btn-primary" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Falar com especialista</span>
+                        </a>
+                        <div class="tcc-garantia">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Garantia de aprovação</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tcc-visual">
+                    <div class="tcc-card">
+                        <div class="tcc-card-header">
+                            <i class="fas fa-file-alt"></i>
+                            <span>TCC em andamento</span>
+                        </div>
+                        <div class="tcc-progress">
+                            <div class="progress-item completed">
+                                <div class="progress-dot"></div>
+                                <span>Tema definido</span>
+                            </div>
+                            <div class="progress-item completed">
+                                <div class="progress-dot"></div>
+                                <span>Projeto aprovado</span>
+                            </div>
+                            <div class="progress-item active">
+                                <div class="progress-dot"></div>
+                                <span>Desenvolvimento</span>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-dot"></div>
+                                <span>Defesa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tcc-floating tcc-float-1">
+                        <i class="fas fa-trophy"></i>
+                        <span>Nota 10</span>
+                    </div>
+                    <div class="tcc-floating tcc-float-2">
+                        <i class="fas fa-clock"></i>
+                        <span>Entrega no prazo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estágios Section -->
+    <section class="estagios-section" id="estagios">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">Estágios</span>
+                <h2 class="section-title">Estágio <span class="text-gradient">sem complicação</span></h2>
+                <p class="section-description">Documentação, relatórios e acompanhamento completo para seu estágio</p>
+            </div>
+
+            <div class="estagios-grid">
+                <div class="estagio-card">
+                    <div class="estagio-icon">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h3>Documentação</h3>
+                    <p>TCE, plano de atividades, avaliações e todos os documentos necessários para seu estágio.</p>
+                </div>
+
+                <div class="estagio-card">
+                    <div class="estagio-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Relatórios</h3>
+                    <p>Elaboração de relatórios parciais e final, com formatação ABNT e conteúdo técnico.</p>
+                </div>
+
+                <div class="estagio-card">
+                    <div class="estagio-icon">
+                        <i class="fas fa-laptop-house"></i>
+                    </div>
+                    <h3>Estágio EAD</h3>
+                    <p>Suporte especializado para estágios a distância, com adaptação às normas do MEC.</p>
+                </div>
+
+                <div class="estagio-card">
+                    <div class="estagio-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Acompanhamento</h3>
+                    <p>Suporte contínuo durante todo o período de estágio, tirando todas as suas dúvidas.</p>
+                </div>
+            </div>
+
+            <div class="estagio-banner">
+                <div class="estagio-banner-content">
+                    <h3>Estágio obrigatório ou não-obrigatório?</h3>
+                    <p>Atendemos ambos os casos, com soluções personalizadas para sua instituição de ensino.</p>
+                </div>
+                <a href="https://wa.me/5562996466033" class="btn-white" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Solicitar orçamento</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos Section -->
+    <section class="depoimentos-section" id="depoimentos">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">Depoimentos</span>
+                <h2 class="section-title">O que nossos alunos <span class="text-gradient">dizem</span></h2>
+            </div>
+
+            <div class="depoimentos-slider">
+                <div class="depoimento-card">
+                    <div class="depoimento-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="depoimento-text">"Meu TCC foi aprovado com nota máxima! A orientação da MR Treinamentos foi fundamental, principalmente na parte estatística."</p>
+                    <div class="depoimento-author">
+                        <img src="https://ui-avatars.com/api/?name=Ana+Silva&background=6366f1&color=fff" alt="Ana Silva">
+                        <div>
+                            <h5>Ana Silva</h5>
+                            <span>Enfermagem - UFG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="depoimento-card">
+                    <div class="depoimento-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="depoimento-text">"Consegui meu estágio na área de TI graças aos cursos de Python e Java da MR Treinamentos. Certificado reconhecido pela empresa!"</p>
+                    <div class="depoimento-author">
+                        <img src="https://ui-avatars.com/api/?name=Lucas+Mendes&background=ec4899&color=fff" alt="Lucas Mendes">
+                        <div>
+                            <h5>Lucas Mendes</h5>
+                            <span>Análise de Sistemas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="depoimento-card">
+                    <div class="depoimento-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="depoimento-text">"O curso de NR-35 me qualificou para trabalhar em altura. Em 2 semanas já estava empregado na construção civil."</p>
+                    <div class="depoimento-author">
+                        <img src="https://ui-avatars.com/api/?name=Carlos+Oliveira&background=10b981&color=fff" alt="Carlos Oliveira">
+                        <div>
+                            <h5>Carlos Oliveira</h5>
+                            <span>Segurança do Trabalho</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Pronto para transformar sua carreira?</h2>
+                <p>Entre em contato agora e descubra como a MR Treinamentos pode ajudar você</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/5562996466033" class="btn-white" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Falar no WhatsApp</span>
+                    </a>
+                    <a href="#cursos" class="btn-outline-light">
+                        <span>Ver cursos</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>MR Treinamentos</span>
+                    </div>
+                    <p>Transformando vidas através da educação, assessoria acadêmica e suporte profissional desde 2025.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#cursos">Cursos Profissionalizantes</a></li>
+                        <li><a href="#tcc">Assessoria de TCC</a></li>
+                        <li><a href="#estagios">Suporte para Estágios</a></li>
+                        <li><a href="#">Laudos Técnicos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Cursos</h4>
+                    <ul>
+                        <li><a href="#">SST e NRs</a></li>
+                        <li><a href="#">Tecnologia</a></li>
+                        <li><a href="#">Engenharias</a></li>
+                        <li><a href="#">Gestão e ADM</a></li>
+                        <li><a href="#">Educação</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fab fa-whatsapp"></i> (62) 99646-6033</li>
+                        <li><i class="fas fa-envelope"></i> contato@mrtreinamentos.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Goiânia - GO</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 MR Treinamentos. Todos os direitos reservados.</p>
+                <p>Desenvolvido com <i class="fas fa-heart"></i> por KM Engenharia</p>
+            </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
