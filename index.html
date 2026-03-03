@@ -3,124 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR Treinamentos | Catálogo NRs 40h</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>MR Treinamentos | Catálogo Completo NRs 40h - MTE 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        .gradient-bg { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
-        .ementa-content { display: none; }
-        .ementa-content.active { display: block; }
+        /* CONFIGURAÇÕES BASE */
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        body { font-family: 'Lato', sans-serif; background-color: #f8fafc; color: #334155; line-height: 1.6; }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: #1e293b; }
+
+        /* DESIGN DO SISTEMA (AZUL CORPORATIVO) */
+        :root {
+            --primary: #005088;
+            --secondary: #3b82f6;
+            --accent: #facc15;
+            --dark: #0f172a;
+            --light: #f1f5f9;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER & NAV */
+        nav { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--secondary); }
+        .cta-btn { background: var(--primary); color: white !important; padding: 10px 25px; border-radius: 50px; font-weight: 700; }
+
+        /* HERO SECTION */
+        .hero { background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); color: white; padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+        .hero h1 { font-size: 48px; color: white; margin-bottom: 20px; }
+        .hero p { font-size: 20px; opacity: 0.9; max-width: 800px; margin: 0 auto 40px; }
+        .hero-badge { background: var(--accent); color: var(--dark); padding: 5px 20px; border-radius: 20px; font-weight: 700; display: inline-block; margin-bottom: 20px; }
+
+        /* CATÁLOGO ACORDEÃO */
+        .catalog-section { padding: 80px 0; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 36px; margin-bottom: 15px; }
+        .section-title hr { width: 80px; height: 5px; background: var(--secondary); border: none; margin: 0 auto; }
+
+        .nr-card { background: white; border-radius: 12px; margin-bottom: 15px; border: 1px solid #e2e8f0; transition: 0.3s; overflow: hidden; }
+        .nr-card:hover { border-color: var(--secondary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        .nr-header { width: 100%; text-align: left; padding: 25px; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+        .nr-info { display: flex; align-items: center; gap: 20px; }
+        .nr-number { background: var(--light); color: var(--primary); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 24px; font-weight: 700; }
+        .nr-title h3 { font-size: 20px; margin-bottom: 4px; }
+        .nr-tag { font-size: 14px; font-weight: 700; color: var(--secondary); text-transform: uppercase; }
+
+        .nr-content { max-height: 0; overflow: hidden; transition: all 0.4s ease-out; background: #fafbfc; }
+        .nr-content.active { max-height: 1000px; padding: 30px; border-top: 1px solid #f1f5f9; }
+
+        .ementa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .modulo-box { background: white; padding: 20px; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .modulo-box h4 { font-size: 16px; color: var(--primary); margin-bottom: 8px; }
+        .modulo-box p { font-size: 14px; color: #64748b; }
+
+        /* FOOTER */
+        footer { background: var(--dark); color: white; padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 18px; }
+        .footer-col p { font-size: 14px; opacity: 0.7; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a { color: white; font-size: 20px; opacity: 0.8; transition: 0.3s; }
+        .social-links a:hover { color: var(--accent); opacity: 1; }
+        .copyright { text-align: center; font-size: 12px; opacity: 0.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+
+        .fa-chevron-down { transition: 0.3s; }
+        .rotated { transform: rotate(180deg); color: var(--secondary); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .nav-links { display: none; }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body>
 
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-800">MR Treinamentos</h1>
-            <a href="https://wa.me/5562999999999" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 font-bold">Falar com Consultor</a>
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <i class="fas fa-hard-hat"></i> MR Treinamentos
+            </a>
+            <div class="nav-links">
+                <a href="#cursos">Cursos</a>
+                <a href="#sobre">Sobre</a>
+                <a href="https://wa.me/5562999999999" class="cta-btn">WhatsApp</a>
+            </div>
         </div>
     </nav>
 
-    <header class="gradient-bg text-white py-16 px-6 text-center">
-        <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Catálogo Oficial de NRs - 2026</h2>
-        <p class="text-lg opacity-90">Treinamentos de 40 horas em conformidade com o MTE</p>
+    <header class="hero">
+        <div class="container">
+            <span class="hero-badge">Atualizado MTE 2026</span>
+            <h1>Treinamentos Especializados em NRs</h1>
+            <p>Capacitação técnica para empresas e profissionais com ementas de 40 horas. Conformidade total com o Ministério do Trabalho e Emprego.</p>
+            <a href="#cursos" style="background: var(--accent); color: var(--dark); text-decoration: none; padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block;">Ver Catálogo</a>
+        </div>
     </header>
 
-    <section class="container mx-auto py-12 px-6">
-        <div class="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
+    <section id="cursos" class="catalog-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cursos NRs (Ementas de 40h)</h2>
+                <p>Clique na norma para ver o conteúdo programático detalhado.</p>
+                <hr>
+            </div>
 
-            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                <button onclick="toggleEmenta('nr01')" class="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition">
-                    <div class="flex items-center">
-                        <span class="bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-lg font-bold mr-4">01</span>
-                        <div class="text-left">
-                            <h3 class="font-bold text-xl">NR-01: Disposições Gerais e GRO/PGR</h3>
-                            <span class="text-sm text-blue-600 font-semibold">Carga Horária: 40h</span>
+            <!-- NR-01 -->
+            <div class="nr-card">
+                <button class="nr-header" onclick="toggleAccordion('nr01', this)">
+                    <div class="nr-info">
+                        <div class="nr-number">01</div>
+                        <div class="nr-title">
+                            <h3>NR-01: Disposições Gerais e GRO/PGR</h3>
+                            <span class="nr-tag">Carga Horária: 40h</span>
                         </div>
                     </div>
-                    <i class="fas fa-chevron-down text-gray-400"></i>
+                    <i class="fas fa-chevron-down"></i>
                 </button>
-                <div id="nr01" class="ementa-content p-6 bg-blue-50 border-t border-gray-100">
-                    <h4 class="font-bold mb-3 text-blue-800 underline">Ementa do Curso (40 Horas):</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><strong>Módulo 1:</strong> Estrutura das NRs e Direitos/Deveres (8h)</li>
-                        <li><strong>Módulo 2:</strong> Identificação de Perigos e Matriz de Riscos (8h)</li>
-                        <li><strong>Módulo 3:</strong> Elaboração Prática do PGR e Inventário (8h)</li>
-                        <li><strong>Módulo 4:</strong> Planos de Ação e Cronogramas de Controle (8h)</li>
-                        <li><strong>Módulo 5:</strong> Resposta a Emergências e Integração GRO (8h)</li>
-                    </ul>
+                <div id="nr01" class="nr-content">
+                    <div class="ementa-grid">
+                        <div class="modulo-box"><h4>Módulo 1</h4><p>Estrutura das NRs, Direitos e Deveres.</p></div>
+                        <div class="modulo-box"><h4>Módulo 2</h4><p>Identificação de Perigos e Avaliação de Riscos.</p></div>
+                        <div class="modulo-box"><h4>Módulo 3</h4><p>Elaboração do PGR e Inventário de Riscos.</p></div>
+                        <div class="modulo-box"><h4>Módulo 4</h4><p>Plano de Ação e Cronogramas de Controle.</p></div>
+                        <div class="modulo-box"><h4>Módulo 5</h4><p>Resposta a Emergências e Integração GRO.</p></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                <button onclick="toggleEmenta('nr10')" class="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition">
-                    <div class="flex items-center">
-                        <span class="bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-lg font-bold mr-4">10</span>
-                        <div class="text-left">
-                            <h3 class="font-bold text-xl">NR-10: Segurança em Elétrica</h3>
-                            <span class="text-sm text-blue-600 font-semibold">Carga Horária: 40h</span>
+            <!-- NR-10 -->
+            <div class="nr-card">
+                <button class="nr-header" onclick="toggleAccordion('nr10', this)">
+                    <div class="nr-info">
+                        <div class="nr-number">10</div>
+                        <div class="nr-title">
+                            <h3>NR-10: Segurança em Eletricidade</h3>
+                            <span class="nr-tag">Carga Horária: 40h</span>
                         </div>
                     </div>
-                    <i class="fas fa-chevron-down text-gray-400"></i>
+                    <i class="fas fa-chevron-down"></i>
                 </button>
-                <div id="nr10" class="ementa-content p-6 bg-blue-50 border-t border-gray-100">
-                    <h4 class="font-bold mb-3 text-blue-800 underline">Ementa do Curso (40 Horas):</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><strong>Módulo 1:</strong> Introdução à Segurança com Eletricidade (8h)</li>
-                        <li><strong>Módulo 2:</strong> Medidas de Controle e Aterramento Temporário (8h)</li>
-                        <li><strong>Módulo 3:</strong> EPI/EPC e Proteção Contra Arcos Elétricos (8h)</li>
-                        <li><strong>Módulo 4:</strong> Normas ABNT e Documentação Técnica (8h)</li>
-                        <li><strong>Módulo 5:</strong> Primeiros Socorros em Acidentes Elétricos (8h)</li>
-                    </ul>
+                <div id="nr10" class="nr-content">
+                    <div class="ementa-grid">
+                        <div class="modulo-box"><h4>Módulo 1</h4><p>Riscos em Instalações e Serviços com Eletricidade.</p></div>
+                        <div class="modulo-box"><h4>Módulo 2</h4><p>Medidas de Controle: Desenergização e Aterramento.</p></div>
+                        <div class="modulo-box"><h4>Módulo 3</h4><p>EPI/EPC e Proteção Contra Arcos Elétricos.</p></div>
+                        <div class="modulo-box"><h4>Módulo 4</h4><p>Normas Técnicas ABNT e Rotinas de Segurança.</p></div>
+                        <div class="modulo-box"><h4>Módulo 5</h4><p>Primeiros Socorros em Acidentes Elétricos.</p></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                <button onclick="toggleEmenta('nr35')" class="w-full flex justify-between items-center p-6 hover:bg-gray-50 transition">
-                    <div class="flex items-center">
-                        <span class="bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-lg font-bold mr-4">35</span>
-                        <div class="text-left">
-                            <h3 class="font-bold text-xl">NR-35: Trabalho em Altura</h3>
-                            <span class="text-sm text-blue-600 font-semibold">Carga Horária: 40h</span>
+            <!-- NR-11 -->
+            <div class="nr-card">
+                <button class="nr-header" onclick="toggleAccordion('nr11', this)">
+                    <div class="nr-info">
+                        <div class="nr-number">11</div>
+                        <div class="nr-title">
+                            <h3>NR-11: Movimentação de Materiais</h3>
+                            <span class="nr-tag">Carga Horária: 40h</span>
                         </div>
                     </div>
-                    <i class="fas fa-chevron-down text-gray-400"></i>
+                    <i class="fas fa-chevron-down"></i>
                 </button>
-                <div id="nr35" class="ementa-content p-6 bg-blue-50 border-t border-gray-100">
-                    <h4 class="font-bold mb-3 text-blue-800 underline">Ementa do Curso (40 Horas):</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><strong>Módulo 1:</strong> Análise de Risco e Condições Impeditivas (8h)</li>
-                        <li><strong>Módulo 2:</strong> Sistemas de Proteção Contra Quedas (SPQ) (8h)</li>
-                        <li><strong>Módulo 3:</strong> Pontos de Ancoragem e Linhas de Vida (8h)</li>
-                        <li><strong>Módulo 4:</strong> Novo Anexo de Escadas e Inspeção de EPI (8h)</li>
-                        <li><strong>Módulo 5:</strong> Técnicas de Resgate e Auto-salvamento (8h)</li>
-                    </ul>
+                <div id="nr11" class="nr-content">
+                    <div class="ementa-grid">
+                        <div class="modulo-box"><h4>Módulo 1</h4><p>Conceitos de Estabilidade e Centro de Gravidade.</p></div>
+                        <div class="modulo-box"><h4>Módulo 2</h4><p>Inspeção Preventiva de Cabos e Correntes.</p></div>
+                        <div class="modulo-box"><h4>Módulo 3</h4><p>Operação Segura de Empilhadeiras e Guindastes.</p></div>
+                        <div class="modulo-box"><h4>Módulo 4</h4><p>Sinalização e Regras de Circulação em Depósitos.</p></div>
+                        <div class="modulo-box"><h4>Módulo 5</h4><p>Checklist Prático e Manobras de Segurança.</p></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="text-center mt-8">
-                <p class="text-gray-500 italic mb-4">Disponibilizamos treinamentos para todas as 38 NRs.</p>
-                <a href="https://wa.me/SEUNUMERO" class="bg-blue-800 text-white px-8 py-3 rounded-full font-bold">Solicitar Ementa de Outra NR</a>
+            <!-- NR-12 -->
+            <div class="nr-card">
+                <button class="nr-header" onclick="toggleAccordion('nr12', this)">
+                    <div class="nr-info">
+                        <div class="nr-number">12</div>
+                        <div class="nr-title">
+                            <h3>NR-12: Segurança em Máquinas</h3>
+                            <span class="nr-tag">Carga Horária: 40h</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="nr12" class="nr-content">
+                    <div class="ementa-grid">
+                        <div class="modulo-box"><h4>Módulo 1</h4><p>Princípios Gerais e Apreciação de Riscos.</p></div>
+                        <div class="modulo-box"><h4>Módulo 2</h4><p>Sistemas de Segurança e Intertravamento.</p></div>
+                        <div class="modulo-box"><h4>Módulo 3</h4><p>Proteções Fixas e Distâncias de Segurança.</p></div>
+                        <div class="modulo-box"><h4>Módulo 4</h4><p>LOTO: Bloqueio e Etiquetagem.</p></div>
+                        <div class="modulo-box"><h4>Módulo 5</h4><p>Manutenção Segura e Capacitação Prática.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NR-18 -->
+            <div class="nr-card">
+                <button class="nr-header" onclick="toggleAccordion('nr18', this)">
+                    <div class="nr-info">
+                        <div class="nr-number">18</div>
+                        <div class="nr-title">
+                            <h3>NR-18: Indústria da Construção</h3>
+                            <span class="nr-tag">Carga Horária: 40h</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="nr18" class="nr-content">
+                    <div class="ementa-grid">
+                        <div class="modulo-box"><h4>Módulo 1</h4><p>Gestão de SST: PGR no Canteiro de Obras.</p></div>
+                        <div class="modulo-box"><h4>Módulo 2</h4><p>Segurança em Escavações e Fundações.</p></div>
+                        <div class="modulo-box"><h4>Módulo 3</h4><p>Carpintaria, Armação e Estruturas de Concreto.</p></div>
+                        <div class="modulo-box"><h4>Módulo 4</h4><p>Instalações Elétricas Temporárias.</p></div>
+                        <div class="modulo-box"><h4>Módulo 5</h4><p>Áreas de Vivência e Logística de Segurança.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NR-33 -->
+            <div class="nr-card">
+                <button class="nr-header" onclick="toggleAccordion('nr33', this)">
+                    <div class="nr-info">
+                        <div class="nr-number">33</div>
+                        <div class="nr-title">
+                            <h3>NR-33: Espaços Confinados</h3>
+                            <span class="nr-tag">Carga Horária: 40h</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="nr33" class="nr-content">
+                    <div class="ementa-grid">
+                        <div class="modulo-box"><h4>Módulo 1</h4><p>Reconhecimento e Antecipação de Riscos.</p></div>
+                        <div class="modulo-box"><h4>Módulo 2</h4><p>Monitoramento Atmosférico e Medição.</p></div>
+                        <div class="modulo-box"><h4>Módulo 3</h4><p>Ventilação e Controle de Energias.</p></div>
+                        <div class="modulo-box"><h4>Módulo 4</h4><p>PET (Permissão de Entrada) e Papel do Vigia.</p></div>
+                        <div class="modulo-box"><h4>Módulo 5</h4><p>Protocolos de Resgate e Primeiros Socorros.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NR-35 -->
+            <div class="nr-card">
+                <button class="nr-header" onclick="toggleAccordion('nr35', this)">
+                    <div class="nr-info">
+                        <div class="nr-number">35</div>
+                        <div class="nr-title">
+                            <h3>NR-35: Trabalho em Altura</h3>
+                            <span class="nr-tag">Carga Horária: 40h</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div id="nr35" class="nr-content">
+                    <div class="ementa-grid">
+                        <div class="modulo-box"><h4>Módulo 1</h4><p>Análise de Risco e Condições Impeditivas.</p></div>
+                        <div class="modulo-box"><h4>Módulo 2</h4><p>Sistemas de Proteção Contra Quedas (SPQ).</p></div>
+                        <div class="modulo-box"><h4>Módulo 3</h4><p>Ancoragens, Linhas de Vida e Conectores.</p></div>
+                        <div class="modulo-box"><h4>Módulo 4</h4><p>Novo Anexo de Escadas e Inspeção de EPI.</p></div>
+                        <div class="modulo-box"><h4>Módulo 5</h4><p>Técnicas de Resgate e Auto-salvamento.</p></div>
+                    </div>
+                </div>
             </div>
 
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-10 text-center">
-        <p>© 2026 MR Treinamentos - Engenheiro Márcio Rodrigues</p>
+    <footer id="sobre">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>MR Treinamentos</h4>
+                    <p>Consultoria técnica liderada pelo Eng. Márcio Rodrigues. Especialistas em segurança do trabalho em Goiânia.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contatos</h4>
+                    <p>Goiânia - GO<br>contato@mrtreinamentos.online</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 MR Treinamentos - Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        function toggleEmenta(id) {
+        function toggleAccordion(id, element) {
             const content = document.getElementById(id);
-            const allContent = document.querySelectorAll('.ementa-content');
+            const icon = element.querySelector('.fa-chevron-down');
+            const isActive = content.classList.contains('active');
             
-            // Fecha as outras para manter organizado
-            allContent.forEach(item => {
-                if(item.id !== id) item.classList.remove('active');
-            });
+            document.querySelectorAll('.nr-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.fa-chevron-down').forEach(i => i.classList.remove('rotated'));
 
-            content.classList.toggle('active');
+            if (!isActive) {
+                content.classList.add('active');
+                icon.classList.add('rotated');
+            }
         }
     </script>
 </body>
