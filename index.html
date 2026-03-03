@@ -3,312 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR Treinamentos | Catálogo Completo NRs - MTE 2026</title>
+    <title>MR Treinamentos | Catálogo Completo NRs 40h - MTE 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
-        /* CONFIGURAÇÕES BASE */
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-        body { font-family: 'Lato', sans-serif; background-color: #f8fafc; color: #334155; line-height: 1.6; }
-        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: #1e293b; }
-
-        /* DESIGN DO SISTEMA (AZUL CORPORATIVO) */
-        :root {
-            --primary: #005088;
-            --secondary: #3b82f6;
-            --accent: #facc15;
-            --dark: #0f172a;
-            --light: #f1f5f9;
+        body { font-family: 'Lato', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+        
+        /* Acordeão: Controle de transição */
+        .nr-content { 
+            max-height: 0; 
+            opacity: 0; 
+            overflow: hidden; 
+            transition: all 0.5s cubic-bezier(0, 1, 0, 1); 
+        }
+        .nr-content.active { 
+            max-height: 2000px; 
+            opacity: 1; 
+            padding-bottom: 2rem;
+            transition: all 0.5s ease-in-out; 
+        }
+        
+        .gradient-main { 
+            background: linear-gradient(135deg, #002347 0%, #003d7a 100%); 
+        }
+        
+        .rotated { 
+            transform: rotate(180deg); 
+            color: #3b82f6; 
+        }
+        
+        .nr-card { 
+            transition: all 0.3s ease; 
+            border-left: 4px solid transparent; 
+        }
+        .nr-card:hover { 
+            transform: translateX(5px); 
+            border-left-color: #3b82f6; 
+            background-color: #f8fafc;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* HEADER & NAV */
-        nav { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; padding: 15px 0; }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 24px; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: var(--secondary); }
-        .cta-btn { background: var(--primary); color: white !important; padding: 10px 25px; border-radius: 50px; font-weight: 700; }
-
-        /* HERO SECTION */
-        .hero { background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); color: white; padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
-        .hero h1 { font-size: 48px; color: white; margin-bottom: 20px; }
-        .hero p { font-size: 20px; opacity: 0.9; max-width: 800px; margin: 0 auto 40px; }
-        .hero-badge { background: var(--accent); color: var(--dark); padding: 5px 20px; border-radius: 20px; font-weight: 700; display: inline-block; margin-bottom: 20px; }
-
-        /* CATÁLOGO ACORDEÃO */
-        .catalog-section { padding: 80px 0; }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { font-size: 36px; margin-bottom: 15px; }
-        .section-title hr { width: 80px; height: 5px; background: var(--secondary); border: none; margin: 0 auto; }
-
-        .nr-card { background: white; border-radius: 12px; margin-bottom: 15px; border: 1px solid #e2e8f0; transition: 0.3s; overflow: hidden; }
-        .nr-card:hover { border-color: var(--secondary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        
-        .nr-header { width: 100%; text-align: left; padding: 25px; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
-        .nr-info { display: flex; align-items: center; gap: 20px; }
-        .nr-number { background: var(--light); color: var(--primary); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 24px; font-weight: 700; }
-        .nr-title h3 { font-size: 20px; margin-bottom: 4px; }
-        .nr-tag { font-size: 14px; font-weight: 700; color: var(--secondary); text-transform: uppercase; }
-
-        .nr-content { max-height: 0; overflow: hidden; transition: all 0.4s ease-out; background: #fafbfc; }
-        .nr-content.active { max-height: 1000px; padding: 30px; border-top: 1px solid #f1f5f9; }
-
-        .ementa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .modulo-box { background: white; padding: 20px; border-radius: 8px; border-left: 4px solid var(--secondary); box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .modulo-box h4 { font-size: 16px; color: var(--primary); margin-bottom: 8px; }
-        .modulo-box p { font-size: 14px; color: #64748b; }
-
-        /* FOOTER */
-        footer { background: var(--dark); color: white; padding: 60px 0 20px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 18px; }
-        .footer-col p { font-size: 14px; opacity: 0.7; }
-        .social-links { display: flex; gap: 15px; margin-top: 20px; }
-        .social-links a { color: white; font-size: 20px; opacity: 0.8; transition: 0.3s; }
-        .social-links a:hover { color: var(--accent); opacity: 1; }
-        .copyright { text-align: center; font-size: 12px; opacity: 0.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-
-        .fa-chevron-down { transition: 0.3s; }
-        .rotated { transform: rotate(180deg); color: var(--secondary); }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .nav-links { display: none; }
+        /* Destaque para o link RAZGO no rodapé */
+        .razgo-credit a {
+            color: #60a5fa !important;
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 2px solid #60a5fa;
+            transition: all 0.3s ease;
+        }
+        .razgo-credit a:hover {
+            color: #ffffff !important;
+            border-bottom-color: #ffffff;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900">
 
-    <nav>
-        <div class="container nav-content">
-            <a href="#" class="logo">
-                <i class="fas fa-hard-hat"></i> MR Treinamentos
+    <!-- Navegação -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-950 flex items-center gap-2">
+                <i class="fas fa-hard-hat text-yellow-500"></i> MR Treinamentos
             </a>
-            <div class="nav-links">
-                <a href="#cursos">Cursos</a>
-                <a href="#sobre">Sobre</a>
-                <a href="https://wa.me/5562999999999" class="cta-btn">WhatsApp</a>
+            <div class="hidden md:flex gap-8 items-center font-semibold text-sm">
+                <a href="#catalogo" class="hover:text-blue-600 transition">Cursos NRs</a>
+                <a href="#sobre" class="hover:text-blue-600 transition">Sobre</a>
+                <a href="https://wa.me/5562999999999" target="_blank" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition shadow-lg">
+                    <i class="fab fa-whatsapp mr-2"></i>Orçamento
+                </a>
             </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <span class="hero-badge">Atualizado MTE 2026</span>
-            <h1>Treinamentos Especializados em NRs</h1>
-            <p>Capacitação técnica para empresas e profissionais com ementas de 40 horas. Conformidade total com o Ministério do Trabalho e Emprego.</p>
-            <a href="#cursos" style="background: var(--accent); color: var(--dark); text-decoration: none; padding: 15px 40px; border-radius: 50px; font-weight: 700; display: inline-block;">Ver Catálogo</a>
+    <!-- Hero -->
+    <header class="gradient-main text-white py-20 md:py-32 px-6 text-center">
+        <div class="container mx-auto">
+            <div class="inline-block bg-yellow-500 text-blue-950 px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest mb-6">
+                Ministério do Trabalho - 2026
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Capacitação em NRs - 40 Horas</h1>
+            <p class="text-lg md:text-xl opacity-80 max-w-3xl mx-auto mb-10">Treinamentos técnicos especializados para profissionais e empresas. Conformidade legal total com o Eng. Márcio Rodrigues.</p>
+            <a href="#catalogo" class="bg-white text-blue-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition shadow-2xl">Ver Catálogo de Cursos</a>
         </div>
     </header>
 
-    <section id="cursos" class="catalog-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Cursos NRs (Ementas de 40h)</h2>
-                <p>Clique na norma para ver o conteúdo programático detalhado.</p>
-                <hr>
+    <!-- Catálogo de Cursos (Acordeão Gerado por JS) -->
+    <section id="catalogo" class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Catálogo de Treinamentos</h2>
+                <p class="text-slate-500 italic">Cada curso possui ementa detalhada de 40 horas dividida em 5 módulos.</p>
+                <div class="w-20 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
             </div>
 
-            <!-- NR-01 -->
-            <div class="nr-card">
-                <button class="nr-header" onclick="toggleAccordion('nr01', this)">
-                    <div class="nr-info">
-                        <div class="nr-number">01</div>
-                        <div class="nr-title">
-                            <h3>NR-01: Disposições Gerais e GRO/PGR</h3>
-                            <span class="nr-tag">Carga Horária: 40h</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="nr01" class="nr-content">
-                    <div class="ementa-grid">
-                        <div class="modulo-box"><h4>Módulo 1</h4><p>Estrutura das NRs, Direitos e Deveres.</p></div>
-                        <div class="modulo-box"><h4>Módulo 2</h4><p>Identificação de Perigos e Avaliação de Riscos.</p></div>
-                        <div class="modulo-box"><h4>Módulo 3</h4><p>Elaboração do PGR e Inventário de Riscos.</p></div>
-                        <div class="modulo-box"><h4>Módulo 4</h4><p>Plano de Ação e Cronogramas de Controle.</p></div>
-                        <div class="modulo-box"><h4>Módulo 5</h4><p>Resposta a Emergências e Integração GRO.</p></div>
-                    </div>
-                </div>
+            <div class="max-w-4xl mx-auto space-y-4" id="nr-list-container">
+                <!-- Lista de NRs inserida via JavaScript abaixo -->
             </div>
-
-            <!-- NR-10 -->
-            <div class="nr-card">
-                <button class="nr-header" onclick="toggleAccordion('nr10', this)">
-                    <div class="nr-info">
-                        <div class="nr-number">10</div>
-                        <div class="nr-title">
-                            <h3>NR-10: Segurança em Eletricidade</h3>
-                            <span class="nr-tag">Carga Horária: 40h</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="nr10" class="nr-content">
-                    <div class="ementa-grid">
-                        <div class="modulo-box"><h4>Módulo 1</h4><p>Riscos em Instalações e Serviços com Eletricidade.</p></div>
-                        <div class="modulo-box"><h4>Módulo 2</h4><p>Medidas de Controle: Desenergização e Aterramento.</p></div>
-                        <div class="modulo-box"><h4>Módulo 3</h4><p>EPI/EPC e Proteção Contra Arcos Elétricos.</p></div>
-                        <div class="modulo-box"><h4>Módulo 4</h4><p>Normas Técnicas ABNT e Rotinas de Segurança.</p></div>
-                        <div class="modulo-box"><h4>Módulo 5</h4><p>Primeiros Socorros em Acidentes Elétricos.</p></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NR-11 -->
-            <div class="nr-card">
-                <button class="nr-header" onclick="toggleAccordion('nr11', this)">
-                    <div class="nr-info">
-                        <div class="nr-number">11</div>
-                        <div class="nr-title">
-                            <h3>NR-11: Movimentação de Materiais</h3>
-                            <span class="nr-tag">Carga Horária: 40h</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="nr11" class="nr-content">
-                    <div class="ementa-grid">
-                        <div class="modulo-box"><h4>Módulo 1</h4><p>Conceitos de Estabilidade e Centro de Gravidade.</p></div>
-                        <div class="modulo-box"><h4>Módulo 2</h4><p>Inspeção Preventiva de Cabos e Correntes.</p></div>
-                        <div class="modulo-box"><h4>Módulo 3</h4><p>Operação Segura de Empilhadeiras e Guindastes.</p></div>
-                        <div class="modulo-box"><h4>Módulo 4</h4><p>Sinalização e Regras de Circulação em Depósitos.</p></div>
-                        <div class="modulo-box"><h4>Módulo 5</h4><p>Checklist Prático e Manobras de Segurança.</p></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NR-12 -->
-            <div class="nr-card">
-                <button class="nr-header" onclick="toggleAccordion('nr12', this)">
-                    <div class="nr-info">
-                        <div class="nr-number">12</div>
-                        <div class="nr-title">
-                            <h3>NR-12: Segurança em Máquinas</h3>
-                            <span class="nr-tag">Carga Horária: 40h</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="nr12" class="nr-content">
-                    <div class="ementa-grid">
-                        <div class="modulo-box"><h4>Módulo 1</h4><p>Princípios Gerais e Apreciação de Riscos.</p></div>
-                        <div class="modulo-box"><h4>Módulo 2</h4><p>Sistemas de Segurança e Intertravamento.</p></div>
-                        <div class="modulo-box"><h4>Módulo 3</h4><p>Proteções Fixas e Distâncias de Segurança.</p></div>
-                        <div class="modulo-box"><h4>Módulo 4</h4><p>LOTO: Bloqueio e Etiquetagem.</p></div>
-                        <div class="modulo-box"><h4>Módulo 5</h4><p>Manutenção Segura e Capacitação Prática.</p></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NR-18 -->
-            <div class="nr-card">
-                <button class="nr-header" onclick="toggleAccordion('nr18', this)">
-                    <div class="nr-info">
-                        <div class="nr-number">18</div>
-                        <div class="nr-title">
-                            <h3>NR-18: Indústria da Construção</h3>
-                            <span class="nr-tag">Carga Horária: 40h</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="nr18" class="nr-content">
-                    <div class="ementa-grid">
-                        <div class="modulo-box"><h4>Módulo 1</h4><p>Gestão de SST: PGR no Canteiro de Obras.</p></div>
-                        <div class="modulo-box"><h4>Módulo 2</h4><p>Segurança em Escavações e Fundações.</p></div>
-                        <div class="modulo-box"><h4>Módulo 3</h4><p>Carpintaria, Armação e Estruturas de Concreto.</p></div>
-                        <div class="modulo-box"><h4>Módulo 4</h4><p>Instalações Elétricas Temporárias.</p></div>
-                        <div class="modulo-box"><h4>Módulo 5</h4><p>Áreas de Vivência e Logística de Segurança.</p></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NR-33 -->
-            <div class="nr-card">
-                <button class="nr-header" onclick="toggleAccordion('nr33', this)">
-                    <div class="nr-info">
-                        <div class="nr-number">33</div>
-                        <div class="nr-title">
-                            <h3>NR-33: Espaços Confinados</h3>
-                            <span class="nr-tag">Carga Horária: 40h</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="nr33" class="nr-content">
-                    <div class="ementa-grid">
-                        <div class="modulo-box"><h4>Módulo 1</h4><p>Reconhecimento e Antecipação de Riscos.</p></div>
-                        <div class="modulo-box"><h4>Módulo 2</h4><p>Monitoramento Atmosférico e Medição.</p></div>
-                        <div class="modulo-box"><h4>Módulo 3</h4><p>Ventilação e Controle de Energias.</p></div>
-                        <div class="modulo-box"><h4>Módulo 4</h4><p>PET (Permissão de Entrada) e Papel do Vigia.</p></div>
-                        <div class="modulo-box"><h4>Módulo 5</h4><p>Protocolos de Resgate e Primeiros Socorros.</p></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NR-35 -->
-            <div class="nr-card">
-                <button class="nr-header" onclick="toggleAccordion('nr35', this)">
-                    <div class="nr-info">
-                        <div class="nr-number">35</div>
-                        <div class="nr-title">
-                            <h3>NR-35: Trabalho em Altura</h3>
-                            <span class="nr-tag">Carga Horária: 40h</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div id="nr35" class="nr-content">
-                    <div class="ementa-grid">
-                        <div class="modulo-box"><h4>Módulo 1</h4><p>Análise de Risco e Condições Impeditivas.</p></div>
-                        <div class="modulo-box"><h4>Módulo 2</h4><p>Sistemas de Proteção Contra Quedas (SPQ).</p></div>
-                        <div class="modulo-box"><h4>Módulo 3</h4><p>Ancoragens, Linhas de Vida e Conectores.</p></div>
-                        <div class="modulo-box"><h4>Módulo 4</h4><p>Novo Anexo de Escadas e Inspeção de EPI.</p></div>
-                        <div class="modulo-box"><h4>Módulo 5</h4><p>Técnicas de Resgate e Auto-salvamento.</p></div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <footer id="sobre">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>MR Treinamentos</h4>
-                    <p>Consultoria técnica liderada pelo Eng. Márcio Rodrigues.</p>
-                    <p>Especialistas em segurança do trabalho.</p>
+    <!-- Sobre -->
+    <section id="sobre" class="bg-white py-20 px-6 border-y border-gray-100">
+        <div class="container mx-auto flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-bold mb-6">Liderança e Tecnologia</h2>
+                <p class="text-lg text-slate-600 mb-8">
+                    A <strong>MR Treinamentos</strong>, dirigida pelo Engenheiro Civil e Analista de Sistemas <strong>Márcio Rodrigues</strong>, oferece o que há de mais moderno em segurança do trabalho e engenharia em Goiânia.
+                </p>
+                <div class="flex items-center gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                    <i class="fas fa-certificate text-3xl text-blue-600"></i>
+                    <span class="font-bold text-blue-900 leading-tight">Certificados com rastreabilidade digital e validade em todo o Brasil.</span>
                 </div>
-                <div class="footer-col">
-                    <h4>Contatos</h4>
-                    <p>Goiânia - GO<br>mrtreinamentosonline@gmail.com
-                    </p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="md:w-1/2 bg-blue-900 rounded-3xl p-10 text-white shadow-2xl relative">
+                <h3 class="text-2xl font-bold mb-4 text-yellow-500">Atendimento Nacional</h3>
+                <p class="opacity-90 mb-8">Oferecemos turmas presenciais e treinamentos online com a mesma qualidade técnica e conformidade exigida pelo MTE.</p>
+                <a href="https://wa.me/5562999999999" target="_blank" class="bg-white text-blue-900 px-8 py-3 rounded-full font-bold hover:bg-yellow-400 transition inline-block">Falar com o Engenheiro</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-slate-950 text-white pt-16 pb-8 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 pb-12 border-b border-slate-900">
+                <div>
+                    <h4 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <i class="fas fa-hard-hat text-yellow-500"></i> MR Treinamentos
+                    </h4>
+                    <p class="text-slate-400 text-sm">Consultoria especializada em Normas Regulamentadoras e gestão de riscos ocupacionais.</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-sm uppercase text-slate-500 mb-6 tracking-widest">Contatos</h5>
+                    <p class="text-slate-400 text-sm">Goiânia - GO<br>mrtreinamentosonline@gmail.com<br>(62) 99646-6033</p>
+                </div>
+                <div class="md:text-right">
+                    <h5 class="font-bold text-sm uppercase text-slate-500 mb-6 tracking-widest">Links Úteis</h5>
+                    <div class="flex md:justify-end gap-4">
+                        <a href="#catalogo" class="text-slate-400 hover:text-white transition">Cursos</a>
+                        <a href="#sobre" class="text-slate-400 hover:text-white transition">Sobre</a>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>© 2026 MR Treinamentos - Todos os direitos reservados.</p>
-                <p>© 2026 MR Treinamentos - Todos os direitos reservados.</p>
+            
+            <!-- Barra de Créditos com RAZGO -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>© 2026 MR Treinamentos.</p>
+                <p class="razgo-credit">
+                    Desenvolvido por: <a href="https://razgo.com.br/" target="_blank">RAZGO</a>
+                </p>
             </div>
         </div>
     </footer>
 
     <script>
-        function toggleAccordion(id, element) {
-            const content = document.getElementById(id);
-            const icon = element.querySelector('.fa-chevron-down');
+        // Lista de todas as NRs válidas
+        const nrsData = [
+            { id: "01", title: "Disposições Gerais e GRO/PGR" },
+            { id: "03", title: "Embargo e Interdição" },
+            { id: "04", title: "SESMT" },
+            { id: "05", title: "CIPA - Prevenção de Acidentes e Assédio" },
+            { id: "06", title: "EPI - Equipamentos de Proteção" },
+            { id: "07", title: "PCMSO" },
+            { id: "08", title: "Edificações" },
+            { id: "09", title: "Avaliação de Exposições Ocupacionais" },
+            { id: "10", title: "Segurança em Instalações Elétricas" },
+            { id: "11", title: "Transporte e Movimentação de Cargas" },
+            { id: "12", title: "Segurança em Máquinas" },
+            { id: "13", title: "Caldeiras e Vasos de Pressão" },
+            { id: "14", title: "Fornos Industriais" },
+            { id: "15", title: "Atividades Insalubres" },
+            { id: "16", title: "Atividades Perigosas" },
+            { id: "17", title: "Ergonomia" },
+            { id: "18", title: "Segurança na Construção Civil" },
+            { id: "19", title: "Explosivos" },
+            { id: "20", title: "Inflamáveis e Combustíveis" },
+            { id: "21", title: "Trabalho a Céu Aberto" },
+            { id: "22", title: "Segurança na Mineração" },
+            { id: "23", title: "Proteção Contra Incêndios" },
+            { id: "24", title: "Condições Sanitárias e de Conforto" },
+            { id: "25", title: "Resíduos Industriais" },
+            { id: "26", title: "Sinalização de Segurança" },
+            { id: "28", title: "Fiscalização e Penalidades" },
+            { id: "29", title: "Trabalho Portuário" },
+            { id: "30", title: "Trabalho Aquaviário" },
+            { id: "31", title: "Agricultura e Pecuária" },
+            { id: "32", title: "Serviços de Saúde" },
+            { id: "33", title: "Espaços Confinados" },
+            { id: "34", title: "Construção Naval" },
+            { id: "35", title: "Trabalho em Altura" },
+            { id: "36", title: "Frigoríficos" },
+            { id: "37", title: "Plataformas de Petróleo" },
+            { id: "38", title: "Limpeza Urbana" }
+        ];
+
+        const container = document.getElementById('nr-list-container');
+
+        // Geração Dinâmica
+        nrsData.forEach(nr => {
+            const card = document.createElement('div');
+            card.className = "bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden nr-card";
+            card.innerHTML = `
+                <button onclick="toggleNR('${nr.id}', this)" class="w-full text-left p-6 flex justify-between items-center transition outline-none">
+                    <div class="flex items-center gap-5">
+                        <span class="bg-blue-900 text-white w-12 h-12 flex items-center justify-center rounded-xl font-bold text-lg">${nr.id}</span>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 leading-tight">NR-${nr.id}: ${nr.title}</h3>
+                            <span class="text-blue-600 text-xs font-bold uppercase tracking-widest">Ementa de 40 Horas</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-down text-slate-300 transition-transform"></i>
+                </button>
+                <div id="nr-${nr.id}" class="nr-content bg-slate-50/50 px-6">
+                    <div class="pt-2 pb-6">
+                        <h4 class="font-bold text-blue-900 mb-6 flex items-center gap-2">
+                            <i class="fas fa-list-check"></i> Conteúdo Programático (5 Módulos de 8h):
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="bg-white p-4 rounded-xl border border-slate-100"><span class="text-blue-600 font-bold block text-xs uppercase mb-1">Módulo 1</span><p class="text-sm font-medium">Legislação e Fundamentos de Segurança.</p></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-100"><span class="text-blue-600 font-bold block text-xs uppercase mb-1">Módulo 2</span><p class="text-sm font-medium">Avaliação e Identificação de Riscos.</p></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-100"><span class="text-blue-600 font-bold block text-xs uppercase mb-1">Módulo 3</span><p class="text-sm font-medium">Medidas de Controle e Uso de EPC/EPI.</p></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-100"><span class="text-blue-600 font-bold block text-xs uppercase mb-1">Módulo 4</span><p class="text-sm font-medium">Manutenção Segura e Operação Técnica.</p></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-100"><span class="text-blue-600 font-bold block text-xs uppercase mb-1">Módulo 5</span><p class="text-sm font-medium">Emergências, Resgate e Primeiros Socorros.</p></div>
+                        </div>
+                        <div class="mt-8">
+                            <a href="https://wa.me/5562996466033" target="_blank" class="bg-blue-900 text-white px-8 py-3 rounded-lg font-bold text-sm shadow hover:bg-blue-800 transition inline-block">Agendar Turma 40h</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // Função do Acordeão
+        function toggleNR(id, btn) {
+            const content = document.getElementById(`nr-${id}`);
+            const icon = btn.querySelector('.fa-chevron-down');
             const isActive = content.classList.contains('active');
-            
+
+            // Opcional: Fechar outros para não ficar muito longo
             document.querySelectorAll('.nr-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.fa-chevron-down').forEach(i => i.classList.remove('rotated'));
 
